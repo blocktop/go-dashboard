@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"net/http"
 
-	api "github.com/blckit/go-dashboard/handlers/api"
+	api "github.com/blocktop/go-dashboard/handlers/api"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
