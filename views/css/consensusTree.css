@@ -1,0 +1,27 @@
+.node rect {
+  fill: #fff;
+  stroke: #666;
+  stroke-width: 3px;
+}
+
+.local {
+  fill: #0c0;
+  color: #0c0;
+  fill-opacity: 1
+}
+
+.disqualified {
+  fill: #999;
+  color: #999;
+  stroke-width: 2px;
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+.node text { font: 10px sans-serif; }
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 3px;
+}
