@@ -1,7 +1,7 @@
-.node rect {
+.node circle {
   fill: #fff;
   stroke: #666;
-  stroke-width: 3px;
+  stroke-width: 1px;
 }
 
 .local {
@@ -13,7 +13,7 @@
 .disqualified {
   fill: #999;
   color: #999;
-  stroke-width: 2px;
+  stroke-width: 1px;
   fill-opacity: .5;
   stroke-opacity: .5;
 }
@@ -23,5 +23,5 @@
 .link {
   fill: none;
   stroke: #666;
-  stroke-width: 3px;
+  stroke-width: 1px;
 }

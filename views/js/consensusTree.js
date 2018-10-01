@@ -16,12 +16,13 @@ function fetchTree () {
 }
 
 var diagonal, tree, root, svg, g, t, x, width, height
-var rectH = 30
-var rectW = 70
+var size = 3
+var depthFactor = 10
+var text = false
 
 function setupSVG () {
   var margin = {top: 40, right: 120, bottom: 20, left: 120}
-  width = 960 - margin.right - margin.left
+  width = 1060 - margin.right - margin.left
   height = 700 - margin.top - margin.bottom
 
   x = d3.scale.ordinal()
@@ -32,7 +33,7 @@ function setupSVG () {
 
   diagonal = d3.svg.diagonal()
     .projection(function (d) {
-      return [d.x + rectW/2, d.y]
+      return [d.x + size/2, d.y]
     })
 
   t = d3.transition()
@@ -71,7 +72,7 @@ function update (source) {
   }
 
   // set qualified nodes in center of tree
-  arrange(root) 
+  //arrange(root) 
   function arrange(node) {
     var arranged = new Array(node.children.length)
     var beginning = 0
@@ -105,7 +106,7 @@ function update (source) {
   var dx
   // Normalize for fixed-depth.
   nodes.forEach(function (d) {
-    d.y = d.depth * 50
+    d.y = d.depth * depthFactor
     if (d.id === '0') {
       dx = width/2 - d.x
     }
@@ -144,21 +145,24 @@ function update (source) {
       }
       return 'translate(' + x + ',' + y + ')'
     })
-  nodeG.append('rect')
-    .attr('width', rectW)
-    .attr('height', rectH)
+  nodeG.append('circle')
+    .attr('cx', size/2)
+    .attr('cy', size/2)
+    .attr('r', size)
     .attr('class', function (d) {
       return 'node' + getClasses(d)
     })
+  if (text) {
   nodeG.append('text')
-    .attr("x", rectW / 2)
-    .attr("y", rectH / 2)
+    .attr("x", size / 2)
+    .attr("y", size / 2)
     .attr("dy", ".01em")
     //.attr("text-anchor", "middle")
     .style('stroke-width', 1)
     .style('margin-left', 3)
     .text(function (d) { return d.name })
     .call(wrap, rectW * 0.9)
+  }
   nodeG.transition(t)
     .style('fill-opacity', 1)
     .style('stroke-opacity', 1)
@@ -233,7 +237,7 @@ function wrap(text, width) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
-        tspan.attr("y", y - rectH/8)
+        tspan.attr("y", y - size/8)
         tspan = text.append("tspan").attr("x", 3).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
       }
     }
